@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useEffect } from 'react';
+import './App.scss';
+import People from "./images/people.webp";
+import CSSRulePlugin from "gsap/CSSRulePlugin";
+import { TimeLineLite, Power2 } from "gsap";
+
 
 function App() {
+
+  let container = useRef(null);
+  let image = useRef(null);
+  let imageReveal = CSSRulePlugin.getRule(".img-container:after");
+
+  const tl = new TimelineLite()
+
+  useEffect (() => {
+    console.log(imageReveal)
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="main">
+      <div className="container" ref={el => container = el}>
+        <>
+          <div className="img-container">
+            <img
+            ref={el => image = el}
+            src={People} />
+          </div>
+        </>
+      </div>
+    </section>
   );
 }
 
